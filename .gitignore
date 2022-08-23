@@ -127,3 +127,17 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# pycharm
+.idea/
+stash/
+
+# dbt
+target/
+dbt_modules/
+dbt_packages/
+logs/
+profiles.yml
+
+#git
+message.commit
