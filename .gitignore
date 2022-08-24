@@ -137,7 +137,6 @@ target/
 dbt_modules/
 dbt_packages/
 logs/
-profiles.yml
 
-#git
+# git
 message.commit
