@@ -1,0 +1,4 @@
+config:
+  adapter: bigquery
+  project: template
+  user: demo

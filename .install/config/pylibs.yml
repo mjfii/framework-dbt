@@ -1,0 +1,14 @@
+base:
+  - pip
+  - wheel
+  - setuptools
+  - colorama
+  - PyYAML~=6.0
+  - requests
+  - gitpython
+  - jinja2
+bigquery:
+  - dbt-bigquery==1.0.0
+  - google-cloud
+  - google-cloud-bigquery
+  - google-cloud-storage
