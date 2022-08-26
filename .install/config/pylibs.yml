@@ -3,12 +3,14 @@ base:
   - wheel
   - setuptools
   - colorama
-  - PyYAML~=6.0
+  - PyYAML
   - requests
   - gitpython
   - jinja2
 bigquery:
-  - dbt-bigquery==1.0.0
+  - dbt-bigquery
   - google-cloud
   - google-cloud-bigquery
   - google-cloud-storage
+snowflake:
+  - dbt-snowflake

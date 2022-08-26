@@ -1,0 +1,9 @@
+source ./.install/common/bash/progress_spinner.sh
+source ./.install/common/bash/initialize.sh
+source ./.install/common/bash/trunc_log.sh
+source ./.install/common/bash/build_venv.sh
+source ./.install/common/bash/install_pip.sh
+source ./.install/common/bash/define_libs.sh
+source ./.install/common/bash/install_libs.sh
+source ./.install/common/bash/create_project.sh
+source ./.install/common/bash/append_profile.sh

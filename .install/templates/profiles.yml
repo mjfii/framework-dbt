@@ -1,0 +1,12 @@
+{{ profile }}:
+  outputs:
+    {{ target }}:
+      type: {{ adapter }}
+      project: {{ database }}
+      schema: {{ user }}
+      method: oauth
+      priority: interactive
+      threads: 8
+      timeout_seconds: 300
+      location: US
+  target: {{ target }}

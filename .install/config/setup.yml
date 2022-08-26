@@ -1,4 +1,7 @@
 config:
   adapter: bigquery
-  project: template
-  user: demo
+  profile: dw
+  database: data-warehouse
+  project: data_warehouse
+  user: gituser
+  target: dev
