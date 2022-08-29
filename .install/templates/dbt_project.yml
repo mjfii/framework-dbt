@@ -45,17 +45,21 @@ seeds:
     columns: true
 
 on-run-start:
-  - "dbt run-operation drop_orphaned_relations"
+  - "{% raw %}{{ drop_orphaned_relations() }}{% endraw %}"
 
 on-run-end:
-  - ""
+  - "{% raw %}{{ missing_attributes_validation(['source', 'transformation'], false) }}{% endraw %}"
+  - "{% raw %}{{ extra_attributes_validation(['source', 'transformation', 'relational_history', 'dimensional_history'], false) }}{% endraw %}"
+  - "{% raw %}{{ mismatch_datatype_validation([], false) }}{% endraw %}"
+  - "{% raw %}{{ path_structure_validation(false) }}{% endraw %}"
+  - "{% raw %}{{ file_naming_validation(false) }}{% endraw %}"
 
 vars:
   local-timezone: 'America/New_York'
   valid-file-naming:
     - description: all lower case with underscores
       regex: '[a-z_/.]+'
-    - description: begins with 'source', lowercase, numbers, or underscores
+    - description: begins with 'sources', lowercase, numbers, or underscores
       regex: '^sources*[a-zA-Z0-9_/.]+'
   managed-schemas:
     - 'audit'
