@@ -1,0 +1,71 @@
+name: 'data_warehouse'
+version: '1.2.0'
+config-version: 2
+profile: 'dw-bigquery'
+
+model-paths: ['sources', 'models']
+analysis-paths: ['analyses']
+test-paths: ['tests']
+seed-paths: ['data']
+macro-paths: ['macros']
+snapshot-paths: ['snapshots']
+docs-paths: ["descriptions"]
+asset-paths: ["assets"]
+
+target-path: 'target'
+log-path: 'logs'
+packages-install-path: 'dbt_packages'
+
+clean-targets:
+  - 'target'
+  - 'logs'
+  - 'dbt_packages'
+
+models:
+  +persist_docs:
+    relation: true
+    columns: true
+  data_warehouse:
+    source:
+      +materialized: view
+    transformation:
+      +materialized: table
+    relational:
+      +materialized: table
+    dimensional:
+      +materialized: table
+    datamart:
+      +materialized: view
+    dataset:
+      +materialized: view
+
+seeds:
+  +persist_docs:
+    relation: true
+    columns: true
+
+on-run-start:
+  - "{{ drop_orphaned_relations() }}"
+
+on-run-end:
+  - "{{ missing_attributes_validation(['source', 'transformation'], false) }}"
+  - "{{ extra_attributes_validation(['source', 'transformation', 'relational_history', 'dimensional_history'], false) }}"
+  - "{{ mismatch_datatype_validation([], false) }}"
+  - "{{ path_structure_validation(false) }}"
+  - "{{ file_naming_validation(false) }}"
+
+vars:
+  local-timezone: 'America/New_York'
+  valid-file-naming:
+    - description: all lower case with underscores
+      regex: '[a-z_/.]+'
+    - description: begins with 'sources', lowercase, numbers, or underscores
+      regex: '^sources*[a-zA-Z0-9_/.]+'
+  managed-schemas:
+    - 'audit'
+    - 'source'
+    - 'transformation'
+    - 'relational'
+    - 'dimensional'
+    - 'datamart'
+    - 'dataset'
