@@ -1,0 +1,15 @@
+# base libraries
+pip
+wheel
+setuptools
+colorama
+PyYAML
+requests
+gitpython
+jinja2
+
+# "bigquery" libraries
+dbt-bigquery
+google-cloud
+google-cloud-bigquery
+google-cloud-storage
